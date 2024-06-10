@@ -1,0 +1,14 @@
+x = 5
+y = 2 
+sum = x + y 
+product = x * y 
+division = x / y
+diff = x - y
+modulo = x % y
+print('sum of x+y =' , sum)
+print(f'sum of x+y in hex = 0x{sum:x}')
+print(f'sum of x+y in capital hex = 0x{sum:X}')
+print('product of x*y =' , product)
+print(f'division of x/y = {division:0.2f}')
+print('difference of x-y =' , diff)
+print('modulo of x%y =' , modulo)
