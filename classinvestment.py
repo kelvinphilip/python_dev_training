@@ -28,6 +28,10 @@ class Investment:
        self.quantity = quantity
        self.purchasedate = datetime.now()
 
+    def __str__(self):
+        return f"Investment type: {self.type}\nbase price of the investment: {self.baseprice}\nNumber of quantities purchased: {self.quantity}\nDate and time of purchase: {self.purchasedate}\nvalue of this investment {self.value}\n"
+
+
     # Define a property for profit and loss
     @property
     def pnl(self) -> int:
