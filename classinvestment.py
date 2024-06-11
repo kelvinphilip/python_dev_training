@@ -1,5 +1,32 @@
+from enum import Enum
+from datetime import datetime
+
+class InvestmentType(Enum):
+    CRYPTO = "crypto"
+    STOCK = "stock"
+    BONDS = "bonds"
+    REALESTATE = "real estate"
+
+class MarketFund:
+    name:str
+    value:int
+    type:InvestmentType
+
+    def __init__(self, name:str, value:int, type:InvestmentType) -> None:
+        self.name = name
+        self.value = value
+        self.type = type
+
 class Investment:
-    # ...
+    __pnls = 0 # private variable in python
+    __value = 0
+
+    def __init__(self, fund:MarketFund, quantity:int = 0) -> None:
+       self.fund = fund
+       self.type = self.fund.type
+       self.baseprice = self.fund.value
+       self.quantity = quantity
+       self.purchasedate = datetime.now()
 
     # Define a property for profit and loss
     @property
@@ -8,7 +35,7 @@ class Investment:
         self.__pnls = (self.fund.value - self.baseprice) * self.quantity
         # Return the profit and loss
         return self.__pnls
-    
+
     # Define a property for the value of the investment
     @property
     def value(self) -> int:
@@ -21,8 +48,8 @@ class Portfolio:
     # Define some class variables
     investStr = ""
     investments = []
-    __totalAssetValue = 0 
-    __totalPnlValue = 0 
+    __totalAssetValue = 0
+    __totalPnlValue = 0
 
     # Define the string representation of the Portfolio class
     def __str__(self):
@@ -44,7 +71,7 @@ class Portfolio:
             self.investStr += f"\nEmpty Portfolio, Please add Investments"
         # Return the string
         return self.investStr
-    
+
     # Define a method to add an investment to the portfolio
     def addinvestment(self, investment:Investment, currentbalance:int) -> int:
         # Calculate the new balance
@@ -55,12 +82,12 @@ class Portfolio:
         return newbalance
 
     # Define a method to remove an investment from the portfolio
-    def removeinvestment(self, investment:Investment) -> int:
+    def removeinvestment(self, investment:Investment) -> list:
         # Remove the investment from the portfolio
         self.investments.remove(investment)
         # Return the investments in the portfolio
         return self.investments
-    
+
     # Define a property for the total value of the portfolio
     @property
     def totalValue(self) -> int:
@@ -70,7 +97,7 @@ class Portfolio:
             self.__totalAssetValue += investment.value
         # Return the total value
         return self.__totalAssetValue
-    
+
     # Define a property for the total profit and loss of the portfolio
     @property
     def totalPnl(self) -> int:
