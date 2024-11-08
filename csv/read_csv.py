@@ -65,3 +65,8 @@ if __name__ == '__main__':
     fig.update_xaxes(rangeslider_visible=True)
     fig.show()
     logger.info(f"Data plotted successfully")
+
+    # Save the plot as html
+    logger.info(f"Saving the plot as html")
+    fig.write_html('hc_allocation.html')
+    logger.info(f"Plot saved successfully")
