@@ -6,7 +6,7 @@ import plotly.express as px
 
 
 __author__ = "Kelvin Philip"
-__version__ = "v0.0.3"
+__version__ = "v0.0.4"
 
 
 # Function to read csv file to a pandas dataframe
@@ -102,8 +102,9 @@ if __name__ == '__main__':
     # Plot the data using plotly-express area chart
     fig = plot_data(hc_df)
 
-    # Save the plot as html
-    save_plot(fig, 'hc_allocation.html')
+    # Save the plot as html to same path as the script
+    filepath = os.path.join(os.path.dirname(__file__), 'hc_allocation.html')
+    save_plot(fig, filepath)
 
     end_time = time.time()
     execution_time = end_time - start_time
