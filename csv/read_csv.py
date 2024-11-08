@@ -1,11 +1,12 @@
 from loguru import logger
 import os
+import time
 import pandas as pd
 import plotly.express as px
 
 
 __author__ = "Kelvin Philip"
-__version__ = "v0.0.2"
+__version__ = "v0.0.3"
 
 
 # Function to read csv file to a pandas dataframe
@@ -67,6 +68,8 @@ def save_plot(fig, filename):
 
 # Main entrypoint for the script
 if __name__ == '__main__':
+    start_time = time.time()
+
     csvfile = 's3_cel_hc_allocation.csv'
     # Get full file path for csvfile
     csvfile = os.path.join(os.path.dirname(__file__), csvfile)
@@ -101,3 +104,7 @@ if __name__ == '__main__':
 
     # Save the plot as html
     save_plot(fig, 'hc_allocation.html')
+
+    end_time = time.time()
+    execution_time = end_time - start_time
+    logger.info(f"Script executed in {execution_time:.2f} seconds")
